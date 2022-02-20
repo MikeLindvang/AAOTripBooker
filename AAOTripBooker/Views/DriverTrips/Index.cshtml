@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AAOTripBooker.Models.DriverTrip>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Trip.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Trip.EndDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Trip.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.Trip.Traffic)</th>
+            <th>@Html.DisplayNameFor(model => model.Trip.Department)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.Traffic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Driver.Name)
+            </td>
+            
+            <td>
+                
+                @Html.ActionLink("Delete", "Delete", new {  driverid=item.DriverId, tripid=item.TripId  })
+                @*<a asp-controller="DriverPeriod" asp-action="Delete" asp-route-id="@item.DriverId" asp-route-id="@item.TripId" class="btn btn-secondary">Opret perioder</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

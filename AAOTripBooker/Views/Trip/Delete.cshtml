@@ -1,0 +1,26 @@
+﻿@model AAOTripBooker.Models.Trip
+<div class="container">
+    <form method="post" asp-action="DeletePost">
+        <input asp-for="Id" hidden />
+        
+        <div class="form-group row">
+            <h2>Slet Tur</h2>
+        </div>
+        
+       
+        
+        <div class="row">
+            
+                <div class="col-4">
+                    <input type="submit" class="btn btn-danger w-75 mt-4" value="Slet Tur" /> 
+                </div>
+                <div class="col-4">
+                     
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success">Tilbage</a>
+                </div>
+            
+        </div>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AAOTripBooker.Models.DriverPeriod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Driver.DriversLicense)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

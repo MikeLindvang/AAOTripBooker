@@ -1,0 +1,22 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<AAOTripBooker.Models.ApplicationUser> signInManager
+@if(signInManager.IsSignedIn(User))
+{
+    <form id="logoutForm" asp-action="LogOff" asp-controller="Account">
+        <ul class="nav navbar-nav">
+            <li class="nav navbar-text">@User.Identity.Name</li>&nbsp;
+            <button class="btn btn-outline-secondary" type="submit" value="Log ud"><i class="bi bi-box-arrow-right"></i> Log ud</button>
+        </ul>
+    </form>
+}
+else {
+    <ul class="nav-link navbar-nav">
+        <li>
+            @*@Html.ActionLink("Tilmeld","Register", "Konto", routeValues:null, htmlAttributes:new{id="registerLink"})*@
+            <a class="nav-link" id="registerLink" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus-fill"></i> Tilmeld</a>
+        </li>
+        <li>
+            @*@Html.ActionLink("Log ind","Login", "Konto", routeValues:null, htmlAttributes:new{id="loginLink"})*@
+            <a class="nav-link" id="loginLink" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Log ind</a>
+        </li>
+    </ul>
+}

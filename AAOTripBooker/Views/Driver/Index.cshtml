@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AAOTripBooker.Models.Driver>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2 class="text-primary">Afløser oversigt</h2>
+        </div>
+        <div class="col-4">
+            <a class="btn btn-success" asp-controller="Driver" asp-action="Create">Opret afløser</a>
+        </div>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+
+                    <th>Navn</th>
+                    <th>Tlf. nr.</th>
+                    <th>Email</th>
+                    <th>Kørekort information</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var ftarget = "#driverCollapse" + item.Id;
+                    var fid = "driverCollapse" + item.Id;
+                    <tr data-bs-toggle="collapse" data-bs-target="@{
+                @ftarget
+}" style="cursor:pointer;">
+
+                        <td>@item.Name</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Email</td>
+                        <td>@item.DriversLicense + @item.Id</td>
+                    </tr>
+                    <tr class="collapse" id="@{
+                @fid
+}">
+                        <td colspan="4">
+                            <h5>Chauffør information</h5>
+                            <h6>Tilgængelighed</h6>
+                            <table class="table table-bordered">
+                                <thead>
+                                <th>Startdato</th>
+                                <th>Slutdato</th>
+                                <th>Starttid</th>
+                                <th>Ret</th>
+                                <th>Slet</th>
+                                </thead>
+                                <tbody>
+                                    @if (item.DriverPeriods.Count() > 0)
+                                    {
+                                        @foreach (var periodItem in item.DriverPeriods)
+                                        {
+                                            <tr>
+                                                <td>@periodItem.DriverStartDate</td>
+                                                <td>@periodItem.DriverStartDate</td>
+                                                <td>@periodItem.DriverStartDate</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-success">Tildel Tur</button>
+                            <a asp-controller="DriverPeriod" asp-action="CreateDriverPeriod" asp-route-id="@item.Id" class="btn btn-secondary">Opret perioder</a>
+                            <hr />
+                            <h6>Om Chaufføren</h6>
+                            <table>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td>@item.Email</td>
+                                </tr>
+                                <tr>
+                                    <th>Tlf:</th>
+                                    <td>@item.Phone</td>
+                                </tr>
+
+                            </table>
+                            <hr />
+                            <a asp-controller="Driver" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Slet</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Der er ikke oprettet nogen ture endnu.</p>
+    }
+</div>
+
+
+

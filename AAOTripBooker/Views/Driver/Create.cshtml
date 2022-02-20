@@ -1,0 +1,65 @@
+﻿@model AAOTripBooker.Models.Driver
+<div class="container">
+    <form method="post" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2>Opret tur</h2>
+        </div>
+        <div class="row">
+            
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="DriverStatus"></label>
+                    <select asp-for="DriverStatus" class="form-control" asp-items="@Html.GetEnumSelectList<DriverStatus>()" >
+                        
+                    </select>
+                    <span asp-validation-for="DriverStatus" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            
+        </div>
+        <div class="row">
+            
+                <div class="col-4">
+                    <label asp-for="DriversLicense"></label>
+                    <input asp-for="DriversLicense" class="form-control" />
+                    <span asp-validation-for="DriversLicense" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="DriverStartLocation"></label>
+                     <select asp-for="DriverStartLocation" class="form-control" asp-items="@Html.GetEnumSelectList<DriverStartLocation>()" >
+                        
+                    </select>
+                    <span asp-validation-for="DriverStartLocation" class="text-danger"></span>
+                </div>
+            
+        </div>
+        
+        <div class="row">
+            
+                <div class="col-4">
+                    
+                </div>
+                <div class="col-4">
+                     <input type="submit" class="btn btn-success w-75 mt-4" value="Opret Chauffoer" /> 
+                </div>
+                <div class="col-4">
+                    
+                </div>
+            
+        </div>
+    </form>
+</div>

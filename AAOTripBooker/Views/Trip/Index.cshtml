@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AAOTripBooker.Models.Trip>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Oprettede Ture</h2>
+        </div>
+        <div class="col-6">
+            Opret ny tur
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    
+                    <th>Startdato</th>
+                    <th>Slutdato</th>
+                    <th>Starttid</th>
+                    <th>Varighed</th>
+                    <th>Trafik</th>
+                    <th>Afdeling</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    var ftarget = "#tripCollapse"+item.Id;
+                    var fid = "tripCollapse"+item.Id;
+                    <tr data-bs-toggle="collapse" data-bs-target="@{@ftarget}" style="cursor:pointer;">
+                        
+                        <td>@item.StartDate</td>
+                        <td>@item.EndDate</td>
+                        <td>@item.StartTime</td>
+                        <td>@item.Duration</td>
+                        <td>@item.Traffic</td>
+                        <td>@item.Department</td>
+                        <td>@item.Status</td>
+                    </tr>
+                    <tr class="collapse" id="@{@fid}">
+                        <td colspan="3">
+                            <a asp-controller="Trip" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Delete</a>
+                            <a asp-controller="Trip" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-secondary mx-1">Update</a>
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Der er ikke oprettet nogen ture endnu.</p>
+    }
+</div>
+
+
+
